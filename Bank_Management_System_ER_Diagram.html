@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bank Management System — ER Diagram</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f0f4f8;
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+  .page-title {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .page-title h1 {
+    font-size: 26px;
+    color: #1F3864;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .page-title p {
+    font-size: 13px;
+    color: #555;
+    margin-top: 4px;
+  }
+  .diagram-wrap {
+    max-width: 1080px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(31,56,100,0.10);
+    padding: 30px 20px 20px;
+    overflow-x: auto;
+  }
+  svg {
+    display: block;
+    margin: 0 auto;
+  }
+  /* Entity box */
+  .entity-header { fill: #1F3864; }
+  .entity-body { fill: #fff; }
+  .entity-alt { fill: #f2f6fc; }
+  .entity-border { stroke: #2E5FA3; stroke-width: 2; fill: none; }
+  .entity-divider { stroke: #2E5FA3; stroke-width: 1.5; }
+  .entity-title { fill: #fff; font-weight: 700; font-size: 13px; font-family: Arial, sans-serif; }
+  .col-name { fill: #1a1a1a; font-size: 11px; font-family: Arial, sans-serif; }
+  .col-type { fill: #555; font-size: 10px; font-family: 'Courier New', monospace; }
+  .pk-badge { fill: #e8a800; font-size: 9px; font-weight: 700; font-family: Arial, sans-serif; }
+  .fk-badge { fill: #2E5FA3; font-size: 9px; font-weight: 700; font-family: Arial, sans-serif; }
+  .pk-dot { fill: #e8a800; }
+  .fk-dot { fill: #2E5FA3; }
+  /* Relationship line */
+  .rel-line { stroke: #2E5FA3; stroke-width: 2; fill: none; stroke-dasharray: none; }
+  .rel-label-bg { fill: #fff; stroke: #2E5FA3; stroke-width: 1; rx: 6; }
+  .rel-label { fill: #1F3864; font-weight: 700; font-size: 11px; font-family: Arial, sans-serif; }
+  .cardinality { fill: #888; font-size: 10px; font-family: Arial, sans-serif; }
+  .legend-box { fill: #fff; stroke: #ddd; stroke-width: 1; rx: 8; }
+  .legend-title { fill: #1F3864; font-weight: 700; font-size: 12px; font-family: Arial, sans-serif; }
+  .legend-text { fill: #333; font-size: 11px; font-family: Arial, sans-serif; }
+</style>
+</head>
+<body>
+<div class="page-title">
+  <h1>Bank Management System</h1>
+  <p>Entity-Relationship (ER) Diagram &nbsp;|&nbsp; MySQL Database Project</p>
+</div>
+<div class="diagram-wrap">
+<svg width="1020" height="680" viewBox="0 0 1020 680" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2E5FA3"/>
+    </marker>
+    <marker id="arrow-many" markerWidth="14" markerHeight="10" refX="0" refY="5" orient="auto">
+      <path d="M0,0 L14,5 L0,10" fill="none" stroke="#2E5FA3" stroke-width="1.5"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#1F3864" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- ─── CUSTOMERS TABLE (left-center) ─── -->
+  <g filter="url(#shadow)">
+    <!-- header -->
+    <rect x="30" y="200" width="220" height="34" rx="6" ry="0" class="entity-header"/>
+    <text x="140" y="221" text-anchor="middle" class="entity-title">CUSTOMERS</text>
+    <!-- body -->
+    <rect x="30" y="234" width="220" height="226" rx="0" ry="6" class="entity-body"/>
+    <rect x="30" y="200" width="220" height="260" rx="6" class="entity-border"/>
+    <!-- divider after header -->
+    <line x1="30" y1="234" x2="250" y2="234" class="entity-divider"/>
+
+    <!-- Rows -->
+    <!-- customer_id PK -->
+    <rect x="30" y="234" width="220" height="26" fill="#fffbe6"/>
+    <circle cx="50" cy="247" r="5" class="pk-dot"/>
+    <text x="62" y="251" class="col-name" font-weight="700">customer_id</text>
+    <text x="200" y="251" text-anchor="end" class="col-type">INT</text>
+    <text x="245" y="251" text-anchor="end" class="pk-badge">PK</text>
+
+    <!-- rows alt -->
+    <rect x="30" y="260" width="220" height="26" fill="#f2f6fc"/>
+    <text x="62" y="277" class="col-name">first_name</text>
+    <text x="245" y="277" text-anchor="end" class="col-type">VARCHAR(50)</text>
+
+    <rect x="30" y="286" width="220" height="26" fill="#fff"/>
+    <text x="62" y="303" class="col-name">last_name</text>
+    <text x="245" y="303" text-anchor="end" class="col-type">VARCHAR(50)</text>
+
+    <rect x="30" y="312" width="220" height="26" fill="#f2f6fc"/>
+    <text x="62" y="329" class="col-name">dob</text>
+    <text x="245" y="329" text-anchor="end" class="col-type">DATE</text>
+
+    <rect x="30" y="338" width="220" height="26" fill="#fff"/>
+    <text x="62" y="355" class="col-name">email</text>
+    <text x="245" y="355" text-anchor="end" class="col-type">VARCHAR(100)</text>
+
+    <rect x="30" y="364" width="220" height="26" fill="#f2f6fc"/>
+    <text x="62" y="381" class="col-name">phone</text>
+    <text x="245" y="381" text-anchor="end" class="col-type">VARCHAR(15)</text>
+
+    <rect x="30" y="390" width="220" height="26" fill="#fff"/>
+    <text x="62" y="407" class="col-name">address</text>
+    <text x="245" y="407" text-anchor="end" class="col-type">VARCHAR(255)</text>
+
+    <rect x="30" y="416" width="220" height="26" fill="#f2f6fc"/>
+    <text x="62" y="433" class="col-name">created_at</text>
+    <text x="245" y="433" text-anchor="end" class="col-type">TIMESTAMP</text>
+
+    <rect x="30" y="442" width="220" height="18" rx="0" ry="6" fill="#eef3fb"/>
+    <text x="140" y="455" text-anchor="middle" fill="#2E5FA3" font-size="9" font-family="Arial">UNIQUE(email) · AUTO_INCREMENT</text>
+  </g>
+
+  <!-- ─── ACCOUNTS TABLE (top-center) ─── -->
+  <g filter="url(#shadow)">
+    <rect x="400" y="30" width="220" height="34" rx="6" ry="0" class="entity-header"/>
+    <text x="510" y="51" text-anchor="middle" class="entity-title">ACCOUNTS</text>
+    <rect x="400" y="64" width="220" height="192" rx="0" ry="6" class="entity-body"/>
+    <rect x="400" y="30" width="220" height="226" rx="6" class="entity-border"/>
+    <line x1="400" y1="64" x2="620" y2="64" class="entity-divider"/>
+
+    <rect x="400" y="64" width="220" height="26" fill="#fffbe6"/>
+    <circle cx="420" cy="77" r="5" class="pk-dot"/>
+    <text x="432" y="81" class="col-name" font-weight="700">account_id</text>
+    <text x="470" y="81" text-anchor="start" class="col-type"/>
+    <text x="615" y="81" text-anchor="end" class="pk-badge">PK</text>
+
+    <rect x="400" y="90" width="220" height="26" fill="#e8f0fe"/>
+    <circle cx="420" cy="103" r="5" class="fk-dot"/>
+    <text x="432" y="107" class="col-name" font-weight="700">customer_id</text>
+    <text x="615" y="107" text-anchor="end" class="fk-badge">FK</text>
+
+    <rect x="400" y="116" width="220" height="26" fill="#f2f6fc"/>
+    <text x="432" y="133" class="col-name">account_type</text>
+    <text x="615" y="133" text-anchor="end" class="col-type">ENUM</text>
+
+    <rect x="400" y="142" width="220" height="26" fill="#fff"/>
+    <text x="432" y="159" class="col-name">balance</text>
+    <text x="615" y="159" text-anchor="end" class="col-type">DECIMAL(12,2)</text>
+
+    <rect x="400" y="168" width="220" height="26" fill="#f2f6fc"/>
+    <text x="432" y="185" class="col-name">opened_at</text>
+    <text x="615" y="185" text-anchor="end" class="col-type">TIMESTAMP</text>
+
+    <rect x="400" y="194" width="220" height="18" rx="0" ry="6" fill="#eef3fb"/>
+    <text x="510" y="207" text-anchor="middle" fill="#2E5FA3" font-size="9" font-family="Arial">FK → Customers(customer_id) CASCADE</text>
+
+    <rect x="400" y="212" width="220" height="18" rx="0" ry="6" fill="#eef3fb"/>
+    <text x="510" y="225" text-anchor="middle" fill="#666" font-size="9" font-family="Arial">ENUM: Savings | Current | Fixed Deposit</text>
+  </g>
+
+  <!-- ─── TRANSACTIONS TABLE (top-right) ─── -->
+  <g filter="url(#shadow)">
+    <rect x="770" y="30" width="220" height="34" rx="6" ry="0" class="entity-header"/>
+    <text x="880" y="51" text-anchor="middle" class="entity-title">TRANSACTIONS</text>
+    <rect x="770" y="64" width="220" height="192" rx="0" ry="6" class="entity-body"/>
+    <rect x="770" y="30" width="220" height="226" rx="6" class="entity-border"/>
+    <line x1="770" y1="64" x2="990" y2="64" class="entity-divider"/>
+
+    <rect x="770" y="64" width="220" height="26" fill="#fffbe6"/>
+    <circle cx="790" cy="77" r="5" class="pk-dot"/>
+    <text x="802" y="81" class="col-name" font-weight="700">transaction_id</text>
+    <text x="985" y="81" text-anchor="end" class="pk-badge">PK</text>
+
+    <rect x="770" y="90" width="220" height="26" fill="#e8f0fe"/>
+    <circle cx="790" cy="103" r="5" class="fk-dot"/>
+    <text x="802" y="107" class="col-name" font-weight="700">account_id</text>
+    <text x="985" y="107" text-anchor="end" class="fk-badge">FK</text>
+
+    <rect x="770" y="116" width="220" height="26" fill="#f2f6fc"/>
+    <text x="802" y="133" class="col-name">type</text>
+    <text x="985" y="133" text-anchor="end" class="col-type">ENUM</text>
+
+    <rect x="770" y="142" width="220" height="26" fill="#fff"/>
+    <text x="802" y="159" class="col-name">amount</text>
+    <text x="985" y="159" text-anchor="end" class="col-type">DECIMAL(12,2)</text>
+
+    <rect x="770" y="168" width="220" height="26" fill="#f2f6fc"/>
+    <text x="802" y="185" class="col-name">transaction_date</text>
+    <text x="985" y="185" text-anchor="end" class="col-type">TIMESTAMP</text>
+
+    <rect x="770" y="194" width="220" height="18" rx="0" ry="6" fill="#eef3fb"/>
+    <text x="880" y="207" text-anchor="middle" fill="#2E5FA3" font-size="9" font-family="Arial">FK → Accounts(account_id) CASCADE</text>
+
+    <rect x="770" y="212" width="220" height="18" rx="0" ry="6" fill="#eef3fb"/>
+    <text x="880" y="225" text-anchor="middle" fill="#666" font-size="9" font-family="Arial">ENUM: Deposit | Withdrawal | Transfer</text>
+  </g>
+
+  <!-- ─── LOANS TABLE (bottom-center) ─── -->
+  <g filter="url(#shadow)">
+    <rect x="400" y="450" width="220" height="34" rx="6" ry="0" class="entity-header"/>
+    <text x="510" y="471" text-anchor="middle" class="entity-title">LOANS</text>
+    <rect x="400" y="484" width="220" height="192" rx="0" ry="6" class="entity-body"/>
+    <rect x="400" y="450" width="220" height="226" rx="6" class="entity-border"/>
+    <line x1="400" y1="484" x2="620" y2="484" class="entity-divider"/>
+
+    <rect x="400" y="484" width="220" height="26" fill="#fffbe6"/>
+    <circle cx="420" cy="497" r="5" class="pk-dot"/>
+    <text x="432" y="501" class="col-name" font-weight="700">loan_id</text>
+    <text x="615" y="501" text-anchor="end" class="pk-badge">PK</text>
+
+    <rect x="400" y="510" width="220" height="26" fill="#e8f0fe"/>
+    <circle cx="420" cy="523" r="5" class="fk-dot"/>
+    <text x="432" y="527" class="col-name" font-weight="700">customer_id</text>
+    <text x="615" y="527" text-anchor="end" class="fk-badge">FK</text>
+
+    <rect x="400" y="536" width="220" height="26" fill="#f2f6fc"/>
+    <text x="432" y="553" class="col-name">loan_type</text>
+    <text x="615" y="553" text-anchor="end" class="col-type">ENUM</text>
+
+    <rect x="400" y="562" width="220" height="26" fill="#fff"/>
+    <text x="432" y="579" class="col-name">loan_amount</text>
+    <text x="615" y="579" text-anchor="end" class="col-type">DECIMAL(12,2)</text>
+
+    <rect x="400" y="588" width="220" height="26" fill="#f2f6fc"/>
+    <text x="432" y="605" class="col-name">interest_rate</text>
+    <text x="615" y="605" text-anchor="end" class="col-type">DECIMAL(5,2)</text>
+
+    <rect x="400" y="614" width="220" height="26" fill="#fff"/>
+    <text x="432" y="631" class="col-name">start_date / end_date</text>
+    <text x="615" y="631" text-anchor="end" class="col-type">DATE</text>
+
+    <rect x="400" y="640" width="220" height="18" rx="0" ry="6" fill="#eef3fb"/>
+    <text x="510" y="653" text-anchor="middle" fill="#2E5FA3" font-size="9" font-family="Arial">FK → Customers(customer_id) CASCADE</text>
+
+    <rect x="400" y="658" width="220" height="18" rx="0" ry="6" fill="#eef3fb"/>
+    <text x="510" y="671" text-anchor="middle" fill="#666" font-size="9" font-family="Arial">ENUM: Home | Car | Personal | Education</text>
+  </g>
+
+  <!-- ─── RELATIONSHIP LINES ─── -->
+
+  <!-- Customers → Accounts (1:N) -->
+  <!-- From Customers right edge (250,330) → Accounts left edge (400,147) -->
+  <path d="M 250,330 C 320,330 320,147 400,147" class="rel-line" marker-end="url(#arrow)"/>
+  <!-- 1 notation -->
+  <text x="258" y="326" class="cardinality">1</text>
+  <!-- N notation -->
+  <text x="383" y="143" class="cardinality">N</text>
+  <!-- Label -->
+  <rect x="285" y="220" width="70" height="22" rx="6" fill="#fff" stroke="#2E5FA3" stroke-width="1"/>
+  <text x="320" y="235" text-anchor="middle" class="rel-label">HAS</text>
+
+  <!-- Accounts → Transactions (1:N) -->
+  <!-- From Accounts right edge (620,147) → Transactions left edge (770,147) -->
+  <line x1="620" y1="147" x2="770" y2="147" class="rel-line" marker-end="url(#arrow)"/>
+  <text x="628" y="143" class="cardinality">1</text>
+  <text x="756" y="143" class="cardinality">N</text>
+  <rect x="659" y="136" width="82" height="22" rx="6" fill="#fff" stroke="#2E5FA3" stroke-width="1"/>
+  <text x="700" y="151" text-anchor="middle" class="rel-label">RECORDS</text>
+
+  <!-- Customers → Loans (1:N) -->
+  <!-- From Customers right edge (250,380) → Loans left edge (400,537) -->
+  <path d="M 250,390 C 320,390 320,537 400,537" class="rel-line" marker-end="url(#arrow)"/>
+  <text x="258" y="386" class="cardinality">1</text>
+  <text x="383" y="533" class="cardinality">N</text>
+  <rect x="270" y="432" width="100" height="22" rx="6" fill="#fff" stroke="#2E5FA3" stroke-width="1"/>
+  <text x="320" y="447" text-anchor="middle" class="rel-label">APPLIES FOR</text>
+
+  <!-- ─── LEGEND ─── -->
+  <rect x="770" y="310" width="220" height="130" rx="8" fill="#fff" stroke="#ddd" stroke-width="1.5"/>
+  <text x="880" y="330" text-anchor="middle" class="legend-title">Legend</text>
+  <line x1="785" y1="336" x2="975" y2="336" stroke="#eee" stroke-width="1"/>
+
+  <circle cx="797" cy="355" r="6" fill="#e8a800"/>
+  <text x="812" y="359" class="legend-text">Primary Key (PK)</text>
+
+  <circle cx="797" cy="378" r="6" fill="#2E5FA3"/>
+  <text x="812" y="382" class="legend-text">Foreign Key (FK)</text>
+
+  <line x1="787" y1="400" x2="807" y2="400" stroke="#2E5FA3" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="812" y="404" class="legend-text">Relationship (1 → N)</text>
+
+  <rect x="785" y="413" width="18" height="14" rx="3" fill="#fffbe6" stroke="#e8a800" stroke-width="1"/>
+  <text x="812" y="424" class="legend-text">PK Row Highlight</text>
+
+</svg>
+</div>
+<div style="text-align:center;margin-top:12px;font-size:12px;color:#888;font-family:Arial;">
+  Bank Management System &mdash; ER Diagram &nbsp;|&nbsp; MySQL Database Project &nbsp;|&nbsp; Academic Use
+</div>
+</body>
+</html>
